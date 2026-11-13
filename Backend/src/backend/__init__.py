@@ -1,5 +1,4 @@
 
-from backend import notesFormat
 from pymongo import MongoClient
 import json
 import time
@@ -34,8 +33,20 @@ def add_website():
     }
     websites.insert_one(new_website)
     return jsonify(new_website)
+
+if websites.count_documents({}) == 0:
+    websites.insert_one({
+        "url": "https://google.com",
+        "rating": 5,
+        "easyNav": True,
+        "adFlood": False,
+        "notReallyFree": False
+    })
+
+print("Database successfully initialized!")
 def main() -> None:
     app.run(debug=True, port=8000)
 
 if __name__ == "__main__":
     main()   
+    
