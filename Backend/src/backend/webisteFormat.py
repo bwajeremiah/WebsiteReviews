@@ -11,7 +11,7 @@ class Website:
         self.url: str = url
         self.rating: int = 0
         self.easyNav: bool = False
-        self.addFlood: bool = False
+        self.adFlood: bool = False
         self.notRealyFree: bool = False
 
     def to_dict(self):
@@ -19,6 +19,6 @@ class Website:
         "url": self.url,
         "rating": self.rating,
         "easyNav": self.easyNav,
-        "addFlood": self.addFlood,
+        "adFlood": self.addFlood,
         "notRealyFree": self.notRealyFree
     }

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Notes from './components/Notes.vue'
+import Reviews from './components/Reviews.vue'
 </script>
 
 <template>

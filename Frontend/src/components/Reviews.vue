@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-const notesData = ref([])
+const websiteData = ref([])
 const errorMessage = ref('')
 const newNoteText = ref('')
 const selectDelete = ref('')
@@ -10,7 +10,7 @@ async function fetchNotes() {
   errorMessage.value = ''
 
   try {
-    const response = await fetch('/api/notes/')
+    const response = await fetch('/api/websites/')
     if (!response.ok) {
       throw new Error(`Request failed with status ${response.status}`)
     }
