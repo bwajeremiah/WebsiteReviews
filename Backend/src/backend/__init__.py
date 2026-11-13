@@ -10,8 +10,8 @@ uri = "mongodb+srv://bwajeremiah_db_user:39firehouse@cluster0.hklay79.mongodb.ne
 client = MongoClient(uri)
 
 try:
-    database = client.get_database("NotesApp")
-    notes = database.get_collection("notes")
+    database = client.get_database("WebsiteReviews")
+    notes = database.get_collection("Website")
 except Exception as e:
     raise Exception("Unable to find the document due to the following error: ", e)
 @app.get("/api/notes/")

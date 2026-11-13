@@ -6,15 +6,19 @@ client = MongoClient(uri)
 import time
 
 
-class Note:
-    def __init__(self, text, id, last_edited_date,):
-        self.text = text
-        self.id = id
-        self.last_edited_date = last_edited_date
+class Website:
+    def __init__(self, url: str):
+        self.url: str = url
+        self.rating: int = 0
+        self.easyNav: bool = False
+        self.addFlood: bool = False
+        self.notRealyFree: bool = False
 
     def to_dict(self):
         return {
-            "text": self.text,
-            "id": self.id,
-            "last_edited_date": self.last_edited_date   
-        }
+        "url": self.url,
+        "rating": self.rating,
+        "easyNav": self.easyNav,
+        "addFlood": self.addFlood,
+        "notRealyFree": self.notRealyFree
+    }
