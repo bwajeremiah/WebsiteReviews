@@ -16,7 +16,7 @@ except Exception as e:
 @app.get("/api/website/")
 def list_notes():
     all_websites = websites.find()
-    return jsonify([Website(website["url"], website["rating"], website["easyNav"], website["adFlood"], website["notReallyFree"]).to_dict() for website in all_websites])
+    return jsonify([Website(website["url"], website["rating"], website["easyNav"], website["adFlood"], website["actuallyFree"]).to_dict() for website in all_websites])
 @app.get("/api/website/count")
 def get_website_count():
     count = websites.count_documents({})
@@ -29,7 +29,7 @@ def add_website():
         "rating": data.get("rating"),
         "easyNav": data.get("easyNav"),
         "adFlood": data.get("adFlood"),
-        "notReallyFree": data.get("notReallyFree"),
+        "actuallyFree": data.get("actuallyFree"),
     }
     websites.insert_one(new_website)
     return jsonify(new_website)
@@ -40,7 +40,7 @@ if websites.count_documents({}) == 0:
         "rating": 5,
         "easyNav": True,
         "adFlood": False,
-        "notReallyFree": False
+        "actuallyFree": False
     })
 
 print("Database successfully initialized!")

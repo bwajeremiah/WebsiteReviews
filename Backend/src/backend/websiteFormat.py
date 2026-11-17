@@ -7,12 +7,12 @@ import time
 
 
 class Website:
-    def __init__(self, url: str, rating: int = 0, easyNav: bool = False, adFlood: bool = False, notReallyFree: bool = False):
+    def __init__(self, url: str, rating: int = 0, easyNav: bool = False, adFlood: bool = False, actuallyFree: bool = False):
         self.url: str = url
         self.rating: int = rating
         self.easyNav: bool = easyNav
         self.adFlood: bool = adFlood
-        self.notReallyFree: bool = notReallyFree
+        self.actuallyFree: bool = actuallyFree
 
     def to_dict(self):
         return {
@@ -20,5 +20,5 @@ class Website:
         "rating": self.rating,
         "easyNav": self.easyNav,
         "adFlood": self.adFlood,
-        "notReallyFree": self.notReallyFree
+        "actuallyFree": self.actuallyFree
     }
