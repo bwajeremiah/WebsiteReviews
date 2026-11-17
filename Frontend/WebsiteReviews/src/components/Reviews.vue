@@ -2,7 +2,6 @@
 import { ref } from 'vue'
 import StarRatingModule from 'vue-star-rating'
 const StarRating = StarRatingModule.default ?? StarRatingModule
-const rating = ref(0)
 const websiteData = ref([])
 const errorMessage = ref('')
 const websiteUrl = ref('')
@@ -33,7 +32,7 @@ async function addWebsite() {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({ 
-        url:  websiteUrl.value ,rating: websiteRating.value,easyNav: easyNav.Value,adFlood: adFlood.value,actuallyFree: actuallyFree.value
+        url:  websiteUrl.value ,rating: websiteRating.value,easyNav: easyNav.value,adFlood: adFlood.value,actuallyFree: actuallyFree.value
        })
     })
     if (!response.ok) {
@@ -44,8 +43,8 @@ async function addWebsite() {
   }
 }
 async function addAndShow(){
-  addWebsite
-  await fetchWebsites 
+  await addWebsite()
+  await fetchWebsites()
 }
 </script>
 
@@ -55,7 +54,7 @@ async function addAndShow(){
   <div v-else-if="websiteData.length" class="sites">
   <article v-for="(website, i) in websiteData" :key="website.url ?? i" class="site">
     <h3>{{ website.url }}</h3>
-    <p><star-rating :rating="website.rating" :read-only="true" :max-rating="5" /> {{ website.rating }}/5</p>
+    <p><star-rating :rating="website.rating" :read-only="true" :max-rating="5" /> </p>
     <ul>
       <li>Easy nav: {{ website.easyNav ? 'Yes' : 'No' }}</li>
       <li>Ad flood: {{ website.adFlood ? 'Yes' : 'No' }}</li>
@@ -64,11 +63,11 @@ async function addAndShow(){
   </article>
 </div>
   <p v-else>No sites loaded yet.</p>
-  <input v-model="newWebsiteText" placeholder="Enter a new website url"></input>
+  <input v-model="websiteUrl" placeholder="Enter a new website url"></input>
   <label><input v-model="easyNav" type="checkbox" /> Easy nav</label>
   <label><input v-model="adFlood" type="checkbox" /> Ad flood</label>
   <label><input v-model="actuallyFree" type="checkbox" /> Actually free</label>
-  <star-rating v-model="rating" :max-rating="5" :increment="0.5"></star-rating>   
+  <star-rating v-model:rating="websiteRating" :max-rating="5" :increment="0.5" />   
   <button @click="addAndShow">Add Website</button>
 </template>
 <style>

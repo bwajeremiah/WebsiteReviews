@@ -32,6 +32,7 @@ def add_website():
         "actuallyFree": data.get("actuallyFree"),
     }
     websites.insert_one(new_website)
+    new_website.pop("id", None)  # Remove the _id field before returning the response
     return jsonify(new_website)
 
 if websites.count_documents({}) == 0:
