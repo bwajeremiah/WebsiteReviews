@@ -294,3 +294,30 @@ code {
     border-right-color: var(--border);
   }
 }
+.layout {
+  display: flex;
+  flex-direction: column;
+  height: 100svh;
+  min-height: 0;
+}
+
+.list-area {
+  flex: 1 1 auto;
+  min-height: 0; /* allows the list to shrink and scroll instead of pushing the form down */
+  overflow-y: auto;
+  padding: 1rem;
+}
+
+.add-area {
+  flex: 0 0 auto;
+  border-top: 1px solid var(--border);
+  background: var(--bg);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.vue-star-rating {
+  justify-content: center;
+}

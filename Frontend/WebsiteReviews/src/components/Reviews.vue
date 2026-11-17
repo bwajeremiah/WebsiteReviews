@@ -49,29 +49,31 @@ async function addAndShow(){
 </script>
 
 <template>
-  <button @click="fetchWebsites">See Sites</button>
-  <p v-if="errorMessage">{{ errorMessage }}</p>
-  <div v-else-if="websiteData.length" class="sites">
-  <article v-for="(website, i) in websiteData" :key="website.url ?? i" class="site">
-    <h3>{{ website.url }}</h3>
-    <p><star-rating :rating="website.rating" :read-only="true" :max-rating="5" /> </p>
-    <ul>
-      <li>Easy nav: {{ website.easyNav ? 'Yes' : 'No' }}</li>
-      <li>Ad flood: {{ website.adFlood ? 'Yes' : 'No' }}</li>
-      <li>Actually free: {{ website.actuallyFree ? 'Yes' : 'No' }}</li>
-    </ul>
-  </article>
-</div>
+  <div class="layout">
+     <section class="list-area">
+        <button @click="fetchWebsites">See Sites</button>
+        <p v-if="errorMessage">{{ errorMessage }}</p>
+        <div v-else-if="websiteData.length" class="sites">
+          <article v-for="(website, i) in websiteData" :key="website.url ?? i" class="site">
+      <h3>{{ website.url }}</h3>
+      <p><star-rating :rating="website.rating" :read-only="true" :max-rating="5" /> </p>
+      <ul>
+        <li>Easy nav: {{ website.easyNav ? 'Yes' : 'No' }}</li>
+        <li>Ad flood: {{ website.adFlood ? 'Yes' : 'No' }}</li>
+        <li>Actually free: {{ website.actuallyFree ? 'Yes' : 'No' }}</li>
+      </ul>
+    </article>
+  </div>
   <p v-else>No sites loaded yet.</p>
+</section>
+
+<form class="add-area" @submit.prevent="addAndShow">
   <input v-model="websiteUrl" placeholder="Enter a new website url"></input>
   <label><input v-model="easyNav" type="checkbox" /> Easy nav</label>
   <label><input v-model="adFlood" type="checkbox" /> Ad flood</label>
   <label><input v-model="actuallyFree" type="checkbox" /> Actually free</label>
   <star-rating v-model:rating="websiteRating" :max-rating="5" :increment="0.5" />   
   <button @click="addAndShow">Add Website</button>
+  </form>
+</div>
 </template>
-<style>
-.vue-star-rating {
-  justify-content: center;
-}
-</style>
