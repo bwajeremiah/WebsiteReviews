@@ -1,14 +1,13 @@
 <script setup>
 import { ref } from 'vue'
-import StarRatingModule from vue-star-rating 
+import StarRatingModule from 'vue-star-rating' 
 const rating = ref(0)
-const websiteData = ref([])
+const websiteData = ref('')
 const errorMessage = ref('')
 const newNoteText = ref('')
 const selectDelete = ref('')
 const editNoteText = ref('')
 const editNoteId = ref('')
-const StarRating = (StarRatingModule in any).defauly ?? StarRatingModule
 async function fetchWebsites() {
   errorMessage.value = ''
 
@@ -31,7 +30,7 @@ async function addWebsite() {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ url:  websiteUrl.value },{rating: websiteRating.value},{easyNav: easyNav.Value},{adFlood: adFlood.value})
+      body: JSON.stringify({ url:  websiteUrl.value ,rating: websiteRating.value,easyNav: easyNav.Value,adFlood: adFlood.value })
     })
     if (!response.ok) {
       throw new Error(`Request failed with status ${response.status}`)
@@ -47,14 +46,14 @@ async function adAndShow(){
 </script>
 
 <template>
-  <button @click="fetchNotes">See Sites</button>
+  <button @click="fetchWebsites">See Sites</button>
   <p v-if="errorMessage">{{ errorMessage }}</p>
-  <ul v-else-if="notesData.length">
-    <li v-for="webiste in websiteData" :key="note.id">
-      ({{ website.url }}, Rating{{ website.rating }})
+  <ul v-else-if="websiteData.length">
+    <li v-for="website in websiteData" :key="website.id">
+      ({{ website.url }}, Rating: {{ website.rating }})
     </li>
   </ul>
-  <p v-else>No notes loaded yet.</p>
+  <p v-else>No sites loaded yet.</p>
   <input v-model="newWebsiteText" placeholder="Enter a new website url"></input>
   <star-rating v-model="rating" :max-rating="5" :increment="0.5"></star-rating>   
   <button @click="addAndShow">Add Website</button>
