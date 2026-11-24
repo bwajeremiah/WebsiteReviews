@@ -1,4 +1,3 @@
-uv --version
 from pymongo import MongoClient
 import json
 import time
